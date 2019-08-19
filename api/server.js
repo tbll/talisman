@@ -2,7 +2,6 @@ const http = require('http')
 const fs = require('fs');
 const url = require('url');
 const path = require('path');
-const mkdirp = require('mkdirp');
 const querystring = require('querystring');
 
 const server = http.createServer(function(request, response) {
@@ -46,13 +45,13 @@ const server = http.createServer(function(request, response) {
           response.end('Internal error')
           log(user + " already exist");
         } else {
-          mkdirp(user, function(err) { 
+          fs.mkdir(user, function(err) { 
             if (err) {
               response.writeHead(412, {'Content-Type': 'text/html'})
               response.end('Internal error')
               log("Failed to create user dir: " + err);
             } else {
-              fs.writeFile(user + "/button.txt", "");
+              fs.writeFileSync(user + "/button.txt", "");
               response.writeHead(200, {'Content-Type': 'text/html'})
               response.end('success')
               log("User " + user + " created");
