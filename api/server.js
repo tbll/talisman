@@ -17,7 +17,7 @@ const server = http.createServer(function(request, response) {
   if (request.url == "/register" && request.method == "GET") {
     serve('./static/register.html', response);
   } else if (request.url == "/register" && request.method == "POST") {
-    var body = ''
+    var body = '';
     request.on('data', (data) => { body += data });
     request.on('end', () => {
       var user = querystring.parse(body).user;
@@ -95,7 +95,7 @@ const server = http.createServer(function(request, response) {
   }
 })
 
-const port = 23;
+const port = 1080;
 const host = '0.0.0.0';
 server.listen(port, host);
 log(`Listening at http://${host}:${port}`);
