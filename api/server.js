@@ -14,7 +14,7 @@ const server = http.createServer(function(request, response) {
   log("connection at " + dateTime + " from " + ip);
 
   if (request.url == "/register" && request.method == "GET") {
-    serve('./static/register.html', response);
+    serve('./s/register.html', response);
   } else if (request.url == "/register" && request.method == "POST") {
     var body = '';
     request.on('data', (data) => { body += data });
@@ -52,8 +52,8 @@ const server = http.createServer(function(request, response) {
               log("Failed to create user dir: " + err);
             } else {
               fs.writeFileSync(user + "/button.txt", "");
-              response.writeHead(200, {'Content-Type': 'text/html'})
-              response.end('success')
+              response.writeHead(303, {Location: '/s/button-instructions.html'});
+              response.end();
               log("User " + user + " created");
             }
           });
@@ -86,7 +86,7 @@ const server = http.createServer(function(request, response) {
     })
   } else if (request.url.startsWith("/s/") && request.method == "GET") {
     const parsedUrl = url.parse(request.url);
-    var pathname = `./static/${parsedUrl.pathname}`;
+    var pathname = `./${parsedUrl.pathname}`;
     serve(pathname, response);
   } else {
     response.writeHead(400, {'Content-Type': 'text/html'})
