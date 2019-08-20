@@ -19,7 +19,7 @@ const server = http.createServer(function(request, response) {
     var body = '';
     request.on('data', (data) => { body += data });
     request.on('end', () => {
-      var user = querystring.parse(body).user;
+      var user = querystring.parse(body).user.toLowerCase();
       if (!user) {
         response.writeHead(412, {'Content-Type': 'text/html'})
         response.end('No user in request body')
@@ -67,9 +67,13 @@ const server = http.createServer(function(request, response) {
       const button = parseInt(body);
       var user = request.headers["user"];
       if (!user) {
+        user = request.headers["User"];
+      }
+      if (!user) {
         response.writeHead(412, {'Content-Type': 'text/html'})
         response.end('Missing user header')
       } else {
+        user = user.toLowerCase();
         user = user.replace(/[^0-9a-z@\.]/gi, '');
         const line = dateTime + "," + button + "," + user + "\n";
         fs.appendFile('data/' + user + '/button.txt', line, function (err) {
