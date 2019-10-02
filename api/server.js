@@ -1,7 +1,7 @@
 const Services = {
   "static": require('./static'),
   "button": require('./button'),
-  "register": require('./register'),
+  "api": require('./api'),
   "review": require('./review'),
 };
 
@@ -16,10 +16,8 @@ const server = http.createServer((request, response) => {
 
   var rurl = request.url.replace(/\/$/, "");
 
-  if (rurl == "/register" && request.method == "GET") {
-    Services.static.handle(request, response, './s/register.html');
-  } else if (rurl == "/register" && request.method == "POST") {
-    Services.register.handle(request, response);
+  if (rurl == "/api" && request.method == "POST") {
+    Services.api.handle(request, response);
   } else if (rurl == "/review" && request.method == "GET") {
     Services.static.handle(request, response, './s/review.html');
   } else if (rurl == "/review" && request.method == "POST") {

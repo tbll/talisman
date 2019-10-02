@@ -1,21 +1,19 @@
 const db = require('./db');
 
 module.exports = {
-  sanitizeUser: function (user) {
-    return new Promise((ok, ko) => {
-      if (!user) {
-        return ko("Invalid user");
-      }
-      user = user.toLowerCase();
-      if (user.length > 128) {
-        return ko("Username too long");
-      }
-      var user2 = user.replace(/[^0-9a-z@\.]/gi, '');
-      if (user2 != user) {
-        return ko("Username should not use special characters");
-      }
-      db.isUserRegistered(user).then(registered => ok({user, registered}));
-    });
+  sanitizeUser: function (user, ok, ko) {
+    if (!user) {
+      return ko("Invalid user");
+    }
+    user = user.toLowerCase();
+    if (user.length > 128) {
+      return ko("Username too long");
+    }
+    var user2 = user.replace(/[^0-9a-z@\.]/gi, '');
+    if (user2 != user) {
+      return ko("Username should not use special characters");
+    }
+    db.isUserRegistered(user).then(registered => ok(user, registered));
   },
   getTime: () => {
     const today = new Date();
