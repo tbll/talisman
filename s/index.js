@@ -86,8 +86,8 @@ function navigate(dest) {
 
   if (dest == "daycloud") {
     wait("Retrieving daycloud");
-    api.downloadWeekClicks(clicks => {
-      // FIXME
+    api.downloadDayClicks(clicks => {
+      buildDayCloud(clicks);
       unwait();
     }, error => {
       unwait();

@@ -2,7 +2,6 @@ const Services = {
   "static": require('./static'),
   "button": require('./button'),
   "api": require('./api'),
-  "review": require('./review'),
 };
 
 const http = require('http')
@@ -18,10 +17,6 @@ const server = http.createServer((request, response) => {
 
   if (rurl == "/api" && request.method == "POST") {
     Services.api.handle(request, response);
-  } else if (rurl == "/review" && request.method == "GET") {
-    Services.static.handle(request, response, './s/review.html');
-  } else if (rurl == "/review" && request.method == "POST") {
-    Services.review.handle(request, response);
   } else if (rurl == "/data" && request.method == "GET") {
     Services.static.handle(request, response, './data.json');
   } else if (rurl == "/button" && request.method == "PUT") {

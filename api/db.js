@@ -4,6 +4,26 @@ const DB = {
   _data: {},
   _loaded: false,
   _dirty: false,
+  fakeData: user => {
+    var buttons = [];
+    var count = 30;
+    while (count > 0) {
+      count--;
+      const button = Math.floor((Math.random() * 3) + 1);
+      const ms_in_a_day = 24 * 3600 * 1000;
+      const now = new Date().getTime();
+      const time = now - Math.floor((Math.random() * ms_in_a_day));
+      buttons.push({ button, time });
+    }
+    if (!(user in DB._data)) {
+      DB._data[user] = {
+        button: [],
+        mood: []
+      };
+    }
+    DB._data[user].button = buttons;
+    DB._dirty = true;
+  },
   load: () => {
     console.log("loading DB");
     DB._loaded = true;
@@ -64,26 +84,16 @@ const DB = {
       ok();
     });
   },
-  getWeek: user => {
+  getDayClicks: user => {
     return new Promise((ok, ko) => {
       if (!(user in DB._data)) {
         ko("user doesn't exist");
         return;
       }
       const now = new Date().getTime();
-      const ms_in_a_week = 7 * 24 * 3600 * 1000;
-      const bweek = DB._data[user].button.filter(i => (now - i.time) < ms_in_a_week);
-      const button_summary = {good: 0, bad: 0, verybad: 0};
-      for (var i of bweek) {
-        if (i.button == 0) {
-          button_summary.good++;
-        } else if (i.button == 1) {
-          button_summary.bad++;
-        } else if (i.button == 2) {
-          button_summary.verybad++;
-        };
-      }
-      ok(button_summary);
+      const ms_in_a_day = 24 * 3600 * 1000;
+      const bday = DB._data[user].button.filter(i => (now - i.time) < ms_in_a_day);
+      ok(bday);
     });
   },
 }

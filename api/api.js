@@ -47,13 +47,19 @@ module.exports = {
         return;
       }
 
-      if (json.method == "weekclicks") {
-        db.getWeek(json.params.username).then(clicks => {
+      if (json.method == "dayclicks") {
+        db.getDayClicks(json.params.username).then(clicks => {
           console.log("clicks retrieved");
           response.end(JSON.stringify(clicks));
         }, error => {
           response.end(JSON.stringify({ error }));
         });
+        return;
+      }
+
+      if (json.method == "fake") {
+        db.fakeData(json.params.username);
+        response.end(JSON.stringify({}));
         return;
       }
 

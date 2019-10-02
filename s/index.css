@@ -4,6 +4,8 @@ html {
 }
 body {
   margin: 0;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
 }
 section {
@@ -12,11 +14,12 @@ section {
   position: absolute;
   top: 0;
   left: 0;  
-  transform: translateX(100vw);
+  display: none;
   background: white;
+  flex-direction: column;
 }
 section.active {
-  transform: none;
+  display: flex;
 }
 .header .button, .footer .button {
   cursor: pointer;
@@ -27,11 +30,6 @@ section.active {
 .content .button {
   cursor: pointer;
   border-bottom: 1px dashed #000;
-}
-
-section {
-  display: flex;
-  flex-direction: column;
 }
 
 section > .content {

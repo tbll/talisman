@@ -33,8 +33,16 @@ const api = {
     const username = localStorage.getItem("username");
     run("mood", {username, mood}, ok, ko);
   },
-  downloadWeekClicks: (ok, ko) => {
+  downloadDayClicks: (ok, ko) => {
     const username = localStorage.getItem("username");
-    run("weekclicks", {username}, ok, ko);
+    run("dayclicks", {username}, ok, ko);
   },
+  fake: () => {
+    const username = localStorage.getItem("username");
+    run("fake", {username}, () => {
+      console.log("fake data created");
+    }, error => {
+      console.log("failed fake data: " + error);
+    });
+  }
 };
