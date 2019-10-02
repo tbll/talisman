@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="api.js"></script>
+    <script src="index.js"></script>
+  </head>
+  <body>
+
+    <section id="landing">
+    </section>
+
+    <section id="landing-anon">
+      <div class="content">
+        <p>Please <span class="button" data-goto="signup">sign up</span>
+        or <span class="button" data-goto="login">log in</span>.</p>
+      </div>
+    </section>
+
+    <section id="login">
+      <div class="header"><div class="button" data-goto="landing">close</div></div>
+      <div class="content">
+        <p><label>Username: <input type=text></label></p>
+      </div>
+      <div class="footer"><div class="button" data-goto="post-signin">next</div></div>
+    </section>
+
+    <section id="signup">
+      <div class="header"><div class="button" data-goto="landing">close</div></div>
+      <div class="content">
+        <p><label>Username: <input type=text></label></p>
+      </div>
+      <div class="footer"><div class="button" data-goto="post-signin">next</div></div>
+    </section>
+
+    <section id="post-signin">
+      <div class="content">
+        <p>Welcome <span class="username"></span>.</p>
+        <p>FIXME: button instructions</p>
+      </div>
+      <div class="footer"><div class="button" data-goto="landing">skip/done</div></div>
+    </section>
+
+    <section id="landing-identified">
+      <div class="content">
+        <p>Review today</p>
+      </div>
+      <div class="footer"><div class="button" data-goto="moodreview">go</div></div>
+    </section>
+
+    <section id="moodreview">
+      <div class="header"><div class="button" data-goto="landing">close</div></div>
+      <div class="content">
+        <p>Let's review today.</p>
+        <p>How was today?</p>
+        <div id="moodrange">
+          <style>
+          #moodrange input {
+            width: 50vw;
+          }
+          #moodrange div {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+          }
+          </style>
+          <input type="range" min="0" max="100">
+          <div>
+            <span>:(</span>
+            <span>:|</span>
+            <span>:)</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer"><div class="button" data-goto="daycloud">next</div></div>
+    </section>
+
+    <section id="daycloud">
+      <div class="header"><div class="button" data-goto="landing">close</div></div>
+      <div class="content">
+        <p>Your day cloud:</p>
+        <p>FIXME</p>
+      </div>
+      <div class="footer"><div class="button" data-goto="maybeweekreview">next</div></div>
+    </section>
+
+    <section id="maybeweekreview">
+      Not supposed to see that screen.
+    </section>
+
+    <section id="sunday">
+      <div class="header"><div class="button" data-goto="landing">close</div></div>
+      <div class="content">
+        <p>Congratulation! You have tracked a full week.</p>
+        <p>Here is your weekly review</p>
+      </div>
+      <div class="footer"><div class="button" data-goto="fullweekreview">Go</div></div>
+    </section>
+
+    <section id="fullweekreview">
+      <div class="header"><div class="button" data-goto="landing">close</div></div>
+      <div class="content">
+        <p>Your mood cloud for this week:</p>
+      </div>
+      <div class="footer"><div class="button" data-goto="finishedfullweekreview">next</div></div>
+    </section>
+
+    <section id="finishedfullweekreview">
+      <div class="header"><div class="button" data-goto="landing">close</div></div>
+      <div class="content">
+        <p>Fantastic! You reviewed your week.</p>
+        <p>You will be getting more insights as you continue doing it.</p>
+        <p>See you again in a week</p>
+      </div>
+    </section>
+
+    <section id="reviewdone">
+      <div class="header"><div class="button" data-goto="landing">close</div></div>
+      <div class="content">
+        <p>You reviewed your day</p>
+        <p>Fantastic!</p>
+        <p>See you tomorrow</p>
+      </div>
+    </section>
+
+    <div id="loading"></div>
+  </body>
+</html>

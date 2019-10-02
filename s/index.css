@@ -1,0 +1,72 @@
+* { box-sizing: border-box; }
+html {
+  font-family: arial;
+}
+body {
+  margin: 0;
+  overflow: hidden;
+}
+section {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;  
+  transform: translateX(100vw);
+  background: white;
+}
+section.active {
+  transform: none;
+}
+.header .button, .footer .button {
+  cursor: pointer;
+  background: #DDD;
+  padding: 1rem;
+}
+
+.content .button {
+  cursor: pointer;
+  border-bottom: 1px dashed #000;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+section > .content {
+  text-align: center;
+  font-size: 2rem;
+  padding: 2rem;
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+section > .content input {
+  font-size: inherit;
+}
+
+section .header, section .footer {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  pointer-events: none;
+  transition: 200ms opacity linear;
+  opacity: 0;
+}
+
+#loading.loading {
+  opacity: 1;
+  pointer-events: auto;
+}
