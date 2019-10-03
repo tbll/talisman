@@ -11,7 +11,7 @@ module.exports = {
       if (!user) {
         user = request.headers["User"];
       }
-      tools.sanitizeUser(user).then(({user, registered}) => {
+      tools.sanitizeUser(user, (user, registered) => {
         if (!registered) {
           tools.reportError(response, 412, body.user + " doesn't exist");
         } else {
