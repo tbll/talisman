@@ -6,6 +6,8 @@ module.exports = {
     var body = ''
     request.on('data', (data) => { body += data });
     request.on('end', () => {
+      console.log("BUTTON BODY");
+      console.log(request.headers);
       const button = parseInt(body);
       var user = request.headers["user"];
       if (!user) {

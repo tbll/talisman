@@ -6,6 +6,7 @@ module.exports = {
       return ko("Invalid user");
     }
     user = user.toLowerCase();
+    user = user.trim();
     if (user.length > 128) {
       return ko("Username too long");
     }
