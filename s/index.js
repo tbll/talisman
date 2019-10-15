@@ -52,6 +52,11 @@ function navigate(dest) {
     }
   }
 
+  if (dest == "logout") {
+    localStorage.clear();
+    navigate("landing");
+  }
+
   if (from == "login" && dest == "post-signin") {
     wait("connecting…");
     api.login($("#login input").value, (login) => {

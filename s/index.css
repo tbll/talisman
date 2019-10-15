@@ -1,30 +1,54 @@
 * { box-sizing: border-box; }
+
 html {
   font-family: arial;
+  height: 100%;
 }
+
 body {
   margin: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
 }
+
+header {
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  box-shadow: inset 0px 17px 26px -15px #9f9f9f;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding-top: 10vh;
+  height: 100%;
+}
+
 section {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;  
+  width: 80vw;
+  min-height: 60vh;
   display: none;
   background: white;
   flex-direction: column;
+  border-radius: 1rem;
+  box-shadow: 0 0 12px -6px black;
+  overflow: hidden;
 }
+
 section.active {
   display: flex;
 }
+
 .header .button, .footer .button {
   cursor: pointer;
-  background: #DDD;
+  background: #F5F5E5;
+  border-radius: 0.5rem;
   padding: 1rem;
+  margin: 0.5rem;
 }
 
 .content .button {
@@ -33,14 +57,18 @@ section.active {
 }
 
 section > .content {
-  text-align: center;
-  font-size: 2rem;
-  padding: 2rem;
+  font-size: 1rem;
   flex: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+#setupbutton > .content > p {
+  text-align: left;
 }
 
 section > .content input {
@@ -70,8 +98,8 @@ section .header, section .footer {
 }
 
 #testbuttonlogs {
-  height: 50vh;
-  width: 100vw;
+  height: 20vh;
+  width: 80vw;
   text-align: left;
   padding: 1rem;
   font-size: 0.5rem;

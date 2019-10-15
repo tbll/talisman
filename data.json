@@ -771,5 +771,17 @@
         "mood": "100"
       }
     ]
+  },
+  "goo": {
+    "button": [],
+    "mood": []
+  },
+  "bat": {
+    "button": [],
+    "mood": []
+  },
+  "hhhhhgf": {
+    "button": [],
+    "mood": []
   }
 }
