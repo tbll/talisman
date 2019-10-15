@@ -70,10 +70,11 @@ section > .content {
   text-align: center;
 }
 
+#post-signin > .content > *,
 #setupbutton > .content > * {
   text-align: left;
   display: block;
-  max-width: 100%;
+  width: 100%;
 }
 
 section > .content input {
@@ -174,4 +175,8 @@ section .header, section .footer {
 #landing-identified .content .button {
   padding: 2rem;
   border-radius: 2rem;
+}
+
+.username {
+  text-transform: capitalize;
 }
