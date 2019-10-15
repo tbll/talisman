@@ -67,8 +67,10 @@ section > .content {
   text-align: center;
 }
 
-#setupbutton > .content > p {
+#setupbutton > .content > * {
   text-align: left;
+  display: block;
+  max-width: 100%;
 }
 
 section > .content input {
