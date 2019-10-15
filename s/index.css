@@ -43,17 +43,20 @@ section.active {
   display: flex;
 }
 
-.header .button, .footer .button {
+.button {
   cursor: pointer;
-  background: #F5F5E5;
+  background: #F5F5B5;
   border-radius: 0.5rem;
+}
+
+.header .button, .footer .button {
   padding: 1rem;
   margin: 0.5rem;
 }
 
 .content .button {
-  cursor: pointer;
-  border-bottom: 1px dashed #000;
+  padding: 0.2rem;
+  margin: 0 0.2rem;
 }
 
 section > .content {
@@ -108,4 +111,67 @@ section .header, section .footer {
   background: black;
   color: white;
   overflow: scroll;
+}
+
+#daycloudcont {
+  box-shadow: 0 0 12px -6px black;
+  background: #29dbe8;
+  text-align: left;
+}
+
+#daycloudcont > div > p::before {
+  display: inline-block;
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  border-radius: 1rem;
+  margin: 0 1rem;
+  vertical-align: middle;
+}
+
+#daycloudcont > div > p:nth-of-type(1)::before {
+  background-color: yellow;
+}
+
+#daycloudcont > div > p:nth-of-type(2)::before {
+  background-color: white;
+}
+
+#daycloudcont > div > p:nth-of-type(3)::before {
+  background-color: #888;
+}
+
+#calendar {
+  margin-top: 2rem;
+  width: calc(7 * 2rem + 1px);
+  display: flex;
+  flex-wrap: wrap;
+  border-width: 0 0 1px 1px;
+  border-style: solid;
+  border-color: black;
+}
+
+#calendar > div {
+  font-size: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border-width: 1px 1px 0 0;
+  border-style: solid;
+  border-color: black;
+  line-height: 2rem;
+  vertical-align: middle;
+  background-color: #F0F0F0;
+}
+
+#calendar > .past {
+  background-color: white;
+}
+
+#calendar > .today {
+  background-color: white;
+}
+
+#landing-identified .content .button {
+  padding: 2rem;
+  border-radius: 2rem;
 }

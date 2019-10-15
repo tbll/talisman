@@ -6,12 +6,11 @@ var test_timout = undefined;
 
 window.onload = () => {
   const hash = document.location.hash;
-  if (hash.includes("#clear")) {
-    localStorage.clear();
-  }
   if (hash.includes("#sunday")) {
     DEBUG.sunday = true;
   }
+
+  buildCalendar();
 
   const sections = $$("section");
   const buttons = $$("section .button");
@@ -157,3 +156,36 @@ const $$ = (str, parent) => {
   return Array.from(nodes);
 };
 
+Date.prototype.monthDays = function() {
+  var d = new Date(this.getFullYear(), this.getMonth() + 1, 0);
+  return d.getDate();
+}
+
+function buildCalendar() {
+  var days = [];
+  var now = new Date();
+  var first = new Date(now.getFullYear(), now.getMonth(), 1).getDay() + 6;
+  first = first % 7;
+  var days_this_month = now.monthDays(); // 1..31
+  var cal = $("#calendar");
+  var today = now.getDate();
+  for (var i = 0; i < (6 * 7); i++) {
+    var text = "";
+    if (i >= first) {
+      if (i < first + days_this_month) {
+        text = i - first + 1;
+      }
+    }
+    var div = document.createElement("div");
+    if (text == today) {
+      div.className = "today";
+    } else if (text > today) {
+      div.className = "future";
+    } else {
+      div.className = "past";
+    }
+    div.textContent = text;
+    cal.appendChild(div);
+  }
+
+}

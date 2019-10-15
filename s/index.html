@@ -121,9 +121,10 @@
       <section id="landing-identified">
         <div class="content">
           <p>Review today</p>
+          <div class="button" data-goto="moodreview">go</div>
+          <div id="calendar"></div>
         </div>
         <div class="footer">
-          <div class="button" data-goto="moodreview">go</div>
           <div class="button" data-goto="setupbutton">configure button</div>
           <div class="button" data-goto="logout">log out</div>
         </div>
@@ -157,10 +158,16 @@
       </section>
 
       <section id="daycloud">
-        <div class="header"><div class="button" data-goto="landing">close</div></div>
         <div class="content">
           <p>Your day cloud:</p>
-          <canvas width="800" height="600" style="width:100%"></canvas>
+          <div id="daycloudcont">
+            <canvas width="800" height="600" style="width:100%"></canvas>
+            <div>
+              <p>relaxed / positive mood</p>
+              <p>anxiety</p>
+              <p>intense anxiety</p>
+            </div>
+          </div>
         </div>
         <div class="footer"><div class="button" data-goto="maybeweekreview">next</div></div>
       </section>
