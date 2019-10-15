@@ -1,9 +1,15 @@
 const fs = require('fs');
 
+var SNAPSHOTS = {
+};
+
 const DB = {
   _data: {},
   _loaded: false,
   _dirty: false,
+  markDirty: () => {
+    DB._dirty = true;
+  },
   fakeData: user => {
     var buttons = [];
     var count = 30;
@@ -22,7 +28,7 @@ const DB = {
       };
     }
     DB._data[user].button = buttons;
-    DB._dirty = true;
+    DB.markDirty();
   },
   load: () => {
     console.log("loading DB");
@@ -52,7 +58,7 @@ const DB = {
         button: [],
         mood: []
       };
-      DB._dirty = true;
+      DB.markDirty();
       ok();
     });
   },
@@ -66,7 +72,7 @@ const DB = {
         time: (new Date().getTime()),
         button: number
       });
-      DB._dirty = true;
+      DB.markDirty();
       ok();
     });
   },
@@ -80,21 +86,36 @@ const DB = {
         time: (new Date().getTime()),
         mood,
       });
-      DB._dirty = true;
+      DB.markDirty();
       ok();
     });
   },
-  getDayClicks: user => {
+  getClicksSince: (user, time) => {
     return new Promise((ok, ko) => {
       if (!(user in DB._data)) {
         ko("user doesn't exist");
         return;
       }
-      const now = new Date().getTime();
-      const ms_in_a_day = 24 * 3600 * 1000;
-      const bday = DB._data[user].button.filter(i => (now - i.time) < ms_in_a_day);
-      ok(bday);
+      const clicks = DB._data[user].button.filter(i => i.time > time);
+      ok(clicks);
     });
+  },
+  snapshot: user => {
+    if (user in DB._data) {
+      SNAPSHOTS[user] = JSON.stringify(DB._data[user]);
+    }
+  },
+  restore: user => {
+    if (user in SNAPSHOTS) {
+      if (user in DB._data) {
+        DB._data[user] = JSON.parse(SNAPSHOTS[user]);
+      }
+    }
+  },
+  getDayClicks: user => {
+    const now = new Date().getTime();
+    const ms_in_a_day = 24 * 3600 * 1000;
+    return DB.getClicksSince(user, now - ms_in_a_day);
   },
 }
 

@@ -2,6 +2,8 @@ var DEBUG = {
   sunday: false
 };
 
+var test_timout = undefined;
+
 window.onload = () => {
   const hash = document.location.hash;
   if (hash.includes("#clear")) {
@@ -102,6 +104,38 @@ function navigate(dest) {
       navigate("sunday");
     } else {
       navigate("reviewdone");
+    }
+  }
+
+  if (dest == "testbutton") {
+    const logs = $("#testbuttonlogs");
+    logs.textContent = "";
+    var count = 0;
+    var a = t => {
+      logs.textContent = count++ + ": " + t + "\n" + logs.textContent;
+    };
+    var test = () => {
+      a("waiting…");
+      api.testButton(json => {
+        if (json.error) {
+          a("error: " + json.error);
+        } else {
+          for (var c of json.clicks) {
+            a("click #" + c.button);
+          }
+        }
+        test_timout = setTimeout(test, 1000);
+      }, error => {
+        a("error: " + error);
+        test_timout = setTimeout(test, 1000);
+      });
+    };
+    test();
+  }
+
+  if (from == "testbutton") {
+    if (test_timout) {
+      clearTimeout(test_timout);
     }
   }
 }

@@ -29,6 +29,10 @@ const api = {
   signup: (username, ok, ko) => {
     run("signup", {username}, json => ok(json.username), ko)
   },
+  testButton: (ok, ko) => {
+    const username = localStorage.getItem("username");
+    run("test-button", {username}, ok, ko)
+  },
   uploadMood: (mood, ok, ko) => {
     const username = localStorage.getItem("username");
     run("mood", {username, mood}, ok, ko);

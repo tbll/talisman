@@ -68,3 +68,14 @@ section .header, section .footer {
   opacity: 1;
   pointer-events: auto;
 }
+
+#testbuttonlogs {
+  height: 50vh;
+  width: 100vw;
+  text-align: left;
+  padding: 1rem;
+  font-size: 0.5rem;
+  background: black;
+  color: white;
+  overflow: scroll;
+}

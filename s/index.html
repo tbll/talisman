@@ -48,7 +48,20 @@
       <div class="content">
         <p>Review today</p>
       </div>
-      <div class="footer"><div class="button" data-goto="moodreview">go</div></div>
+      <div class="footer">
+        <div class="button" data-goto="moodreview">go</div>
+        <div class="button" data-goto="testbutton">test button</div>
+      </div>
+    </section>
+
+    <section id="testbutton">
+      <div class="content">
+        <p>Logs should appear below as you click on the button:</p>
+        <pre id="testbuttonlogs"></pre>
+      </div>
+      <div class="footer">
+        <div class="button" data-goto="landing">back</div>
+      </div>
     </section>
 
     <section id="moodreview">

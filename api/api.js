@@ -63,7 +63,35 @@ module.exports = {
         return;
       }
 
-      response.end(JSON.stringify({ error: "unkonwn api method" }));
+      if (json.method == "test-button") {
+        const now = new Date().getTime();
+        const user = json.params.username;
+        var check_count = 10;
+        db.snapshot(user);
+        const check = () => {
+          db.getClicksSince(user, now).then(clicks => {
+            if (clicks.length == 0) {
+              check_count--;
+              if (check_count == 0) {
+                db.restore(user);
+                response.end(JSON.stringify({error: "No button pressed in the past 10 seconds"}));
+              } else {
+                setTimeout(check, 1000);
+              }
+            } else {
+              db.restore(user);
+              response.end(JSON.stringify({success: true, clicks}));
+            }
+          }, error => {
+            db.restore(user);
+            response.end(JSON.stringify({error}));
+          });
+        };
+        check();
+        return;
+      }
+
+      response.end(JSON.stringify({ error: "unknown api method" }));
 
     });
   }
